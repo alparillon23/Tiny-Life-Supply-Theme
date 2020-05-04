@@ -1,0 +1,23 @@
+<style>
+  .working-link{
+    color: grey;
+    
+  }
+  .working-link:hover {
+    color: black;
+    
+  }
+</style>
+<div class="container">
+  <div class="reading-column">
+    <h1 class="page-title">{{ 'general.404.title' | t }}</h1>
+    <p>{{ 'general.404.subtext_html' | t }}</p>
+    <form class="section" action="/search">
+    <div class="inline-input-button">
+      <input type="hidden" name="type" value="{{ settings.search_type }}" />
+      <input type="text" name="q" placeholder="{{ 'general.search.placeholder' | t }}" value="{{ search.terms | escape }}"  />
+      <button type="submit">{{ 'general.search.search_button' | t }}</button>
+    </div>
+  </form>
+  </div>
+</div>

@@ -1,0 +1,358 @@
+<style>
+
+  .container-colpice
+  {
+    width:30%;
+
+    height:250px;
+    margin-right:1%;
+    margin-bottom: 5%;
+    margin-left:2%;
+    position: relative; 
+    float: left;
+  }
+  .colpic-overla
+  {
+    position: absolute;
+    width:100%;
+    height:100%;
+    background-color: black;
+    opacity: 0.3; 
+    z-index: 2;
+  }
+  .colpic-pice
+  {
+    position: absolute;
+    width:100%;
+    height:250px;
+	object-fit: cover;
+    object-position: center; 
+    z-index: 1;
+  }
+  .colpic-textboxe
+   {
+     position: absolute;
+     background-color: black;
+     text-align: center;
+     vertical-align: center;
+     padding-top: 3%;
+     color: white;
+     opacity: 0.65;
+     font-size: 200%;
+     line-height: 100%;
+  	 top: 10%;
+     left: 20%;
+     width: 60%;
+     height: 30%;
+     z-index: 3;
+   }
+  .colpic-buttone
+  {
+   position: absolute;
+   top: 50%;
+   left: 35%;
+   z-index: 3;
+    
+  }
+   @media (max-width:1000px){
+     
+  .colpic-buttone
+  {
+   position: absolute;
+   top: 50%;
+   left: 25.5%;
+   z-index: 3;
+    
+  }   
+   }
+  
+    @media (max-width:430px)
+    {
+    .container-colpice
+  	{
+    width: 100%;
+    height: 150px;
+    margin-right:1%;
+    margin-left: 1%;
+    margin-bottom: 4%;
+    position: relative;
+  	text-align: center;
+    float: left;
+  	}
+    .colpic-overla
+  	{
+      display: none;
+  	}
+    .colpic-pice
+  	{
+    position: relative;
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    object-position: center; 
+    z-index: 1;
+  	}
+    .colpic-textboxe
+    {
+     position: absolute;
+     background-color: black;
+     color: white;
+     opacity: 0.65;
+  	 top: 10%;
+     font-size: 150%;
+     left: 17.5%;
+     width: 65%;
+     height: 40%;
+     text-align: center;
+     z-index: 3;
+    }
+  .colpic-buttone
+  {
+   position: absolute;
+   top: 60%;
+   left: 31%;
+   z-index: 3;
+    
+  }
+    }
+
+</style>
+<div class= "container">
+<div class= "reading-column">
+<center><h1 style="font-size: 300%;">Energy</h1>
+  <p>Harness the power of the wind, water and sun with the best green energy products on the planet. Whether you're powering a tiny house in Texas, an earthship on the Colorado plateau, or a conversion van in the middle of nowhere, find the perfect green energy solution here.</p></center>
+  </div>
+<div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Goal_Zero_Boulder_100___Solar_Panel___Tiny_Life_Supply.png?4154" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Solar</div><br/>
+    <a href = "https://{{ request.host }}/collections/solar"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div>
+<div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Primus_Air_Wind___Tiny_House_Store___Tiny_Life_Supply.png?4154" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Wind</div><br/>
+    <a href = "https://{{ request.host }}/collections/wind"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div>
+<div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Powerspout_PLT___Micro_Hydro_Electric_Generators___Tiny_Life_Supply.png?4241" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Hydroelectric</div><br/>
+    <a href = "https://{{ request.host }}/collections/hydro-electric"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div>
+<div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Devil_Watt_100W_Thermo_Electric_Generator___Off_Grid_Power___Tiny_Life_Supply.png?4241" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Thermoelectric</div><br/>
+    <a href = "https://{{ request.host }}/collections/thermoelectric"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div>
+<div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Humless_12KWH_Four___Solar_Generator___Tiny_Life_Supply.png?4241" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Energy Storage</div><br/>
+    <a href = "https://{{ request.host }}/collections/energy-storage-batteries-components"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div>
+<div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Firman_H08051_One___Solar_Battery_Charger___Tiny_Life_Supply.png?4241" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Generators</div><br/>
+    <a href = "https://{{ request.host }}/collections/backup-generators"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div>
+<div class= "reading-column">
+<center><h1 style="font-size: 300%;">Heat</h1>
+  <p>The perfect heat source not only provides comfort for your living area, but elevates the design of your entire space. No matter what heating requirements you're working with, find the perfect solution in our collection of tiny wood stoves, propane, and electric heaters.</p></center>
+</div>
+<div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Cubic_Grizzly___Tiny_Wood_Stove___Tiny_Life_Supply.png?4249" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Wood Stoves</div><br/>
+    <a href = "https://{{ request.host }}/collections/wood-stoves"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div>
+<div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Dickinson_Marine_Newport_p12000___Tiny_House_Propane_Heater___Tiny_Life_Supply.png?4249" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Propane Heaters</div><br/>
+    <a href = "https://{{ request.host }}/collections/propane-heaters"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div>
+<div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Prestyl_Infrared_Heater_42_x_42___Tiny_House___Tiny_Life_Supply.png?4249" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Electric Heaters</div><br/>
+    <a href = "https://{{ request.host }}/collections/electric-heat"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div>
+<div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Sundware_Sol_Air_Small___Tiny_House_Solar_Heating___Tiny_Life_Supply.png?4249" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Passive Solar</div><br/>
+    <a href = "https://{{ request.host }}/collections/passive-solar"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div>
+<div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Tiny_House_Stove_Installation_Kit_Roof_Exit___Tiny_House_Wood_Stove___Tiny_Life_Supply.png?4249" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Flue Kits</div><br/>
+    <a href = "https://{{ request.host }}/collections/flue-kits"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div>
+<div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Dickinson_Marine_Exhaust_Cap___Tiny_House_Propane_Heater___Tiny_Life_Supply..png?4249" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Accessories</div><br/>
+    <a href = "https://{{ request.host }}/collections/heat-accessories"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div><br/>
+<div class= "reading-column">
+<center><h1 style="font-size: 300%;">Appliances</h1>
+  <p>At Tiny Life Supply we believe living simply doesn't have to mean sacrificing comfort. To the tiny lifers out there who still plan on hosting thanksgiving dinners, this collection of off-grid compact appliances is dedicated to you.</p></center>
+  </div>
+<div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Unique_20_Classic_Two___Gas_Stove___Tiny_Life_Supply.png?4257" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Range Ovens</div><br/>
+    <a href = "https://{{ request.host }}/collections/ranges"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div>
+<div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Unique_24_Two___Cooktop___Tiny_Life_Supply.png?4257" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Cooktops</div><br/>
+    <a href = "https://{{ request.host }}/collections/cooktops"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div>
+<div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Unique_3cuft_Two_Square___Compact_Refrigerators___Tiny_Life_Supply.png?4257" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Fridges</div><br/>
+    <a href = "https://{{ request.host }}/collections/fridges-freezers"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div>
+<div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/MRCOOL_DIY___Tiny_House_Mini_Split___Tiny_Life_Supply.png?4258" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Air Conditioning</div><br/>
+    <a href = "https://{{ request.host }}/collections/air-conditioning"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div>
+<div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Furrion_18_inch_Countertop_Dishwasher__Tiny_House_Dishwasher___Tiny_Life_Supply.png?4258" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Dishwashers</div><br/>
+    <a href = "https://{{ request.host }}/collections/dishwashers"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div>
+<div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Laundry_Alternative_Mini_Countertop_Spin_Dryer_One___Compact_Appliance___Tiny_Life_Supply.png?4258" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Laundry</div><br/>
+    <a href = "https://{{ request.host }}/collections/laundry"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div><br/>
+<div class= "reading-column">
+<center><h1 style="font-size: 300%;">Water</h1>
+  <p>A well designed water system is a game changer for any tiny living space. Whether you're renovating a conversion van, building a tiny house, or adding utilities to an off-grid getaway, our collection of tanks, pumps and water heaters will let you get it done right.</p></center>
+</div>
+  <div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Barr_Plastics_Water_Tank___Tiny_House_Water_System___Tiny_Life_Supply.png?4264" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+    <center><div class = "colpic-textboxe">Tanks + Pumps</div><br/>
+    <a href = "https://{{ request.host }}/collections/water-tanks-pumps"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div>
+<div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Eccotemp_i12___Tiny_House_Water_Heater___Tiny_Life_Supply.png?4264" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Heaters</div><br/>
+    <a href = "https://{{ request.host }}/collections/water-heaters"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div>
+<div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Tiny_Tubs_Bathtub___Tiny_House_Bathroom___Tiny_Life_Supply.png?4264" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Showers + Bath</div><br/>
+    <a href = "https://{{ request.host }}/collections/shower-bath"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div>
+<div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Clean_Rain_Rectangle.png?4264" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Rainwater + Filtration</div><br/>
+    <a href = "https://{{ request.host }}/collections/rainwater-filtration"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div>
+<div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Aqua2use_GWDD_Pump___Tiny_House_Water___Tiny_Life_Supply.png?4264" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Greywater</div><br/>
+    <a href = "https://{{ request.host }}/collections/greywater"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div>
+<div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Separett_Villa___Tiny_House_Bathroom___Tiny_Life_Supply.png?4265" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Toilets</div><br/>
+    <a href = "https://{{ request.host }}/collections/toilets"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div><br/>
+<div class= "reading-column">
+<center><h1 style="font-size: 300%;">Construction</h1>
+  <p>Creating your tiny dream home begins with the construction of your shell. Our line of premium eco-building essentials will get you started on a solid foundation.</p></center>
+  </div><div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Volstrukt_Wedge_5_l_Tiny_House_Frame_l_Tiny_Life_Supply.jpg?4272" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Structures</div><br/>
+    <a href = "https://{{ request.host }}/collections/structures"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div>
+<div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/construction_category_image.png?4272" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Trailers</div><br/>
+    <a href = "https://{{ request.host }}/pages/tiny-house-trailers"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div>
+<div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Rustica_Hardware_Chevron_Swinging_Barn_Door_7C_Micro_Home_7C_Tiny_Life_Supply.png?4272" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Windows + Doors</div><br/>
+    <a href = "https://{{ request.host }}/collections/windows-doors"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div>
+<div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Enviroslate_Black_Onyx___Recycled_Rooing___Tiny_Life_Supply.png?4272" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Roofing + Siding</div><br/>
+    <a href = "https://{{ request.host }}/collections/roofing-siding"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div>
+<div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Touch_27N_Seal_Foam_Kit_7C_Spray_Foam_Insulation_7C_Tiny_Life_Supply.png?4272" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Insulation</div><br/>
+    <a href = "https://{{ request.host }}/collections/insulation"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div>
+  <div class="container-colpice">
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Eco_Supplies___Tiny_Life_Supply.jpeg?4444" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Eco Supplies</div><br/>
+    <a href = "https://{{ request.host }}/collections/eco-supplies"><button type="submit" class="colpic-buttone">Shop Now</button></a></center></div><br/>
+<div class= "reading-column">
+<center><h1 style="font-size: 300%;">Essentials</h1>
+  <p>It's all about the details. Anyone can slap together a garden shed, but with attention to detail and few select pieces from our tiny life essentials collection, you'll be well on your way to creating a true tiny dream home.</p></center>
+  </div><div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Lotus_4_Regressed_Gimbal_White___LED_Lighting___Tiny_Life_Supply.png?4278" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">LED Lighting</div><br/>
+    <a href = "https://{{ request.host }}/collections/lighting"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div>
+<div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Unique_36_2522_Two_7C_Cooktop_7C_Tiny_Life_Supply.png?4278" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Kitchen</div><br/>
+    <a href = "https://{{ request.host }}/collections/kitchen"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div>
+<div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Haase_Handraft_Ash_Two___Tiny_House_Storage___Tiny_Life_Supply.png?4278" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Furniture + Storage</div><br/>
+    <a href = "https://{{ request.host }}/collections/furniture-storage"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div>
+<div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Maxsa_Solar_Security_Video_Camera_and_Floodlight_7C_LED_Lighting_7C_Tiny_Life_Supply.png?4278" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Home Garden</div><br/>
+    <a href = "https://{{ request.host }}/collections/home-garden"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div>
+<div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/image-asset.png?4278" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Safety + Security</div><br/>
+    <a href = "https://{{ request.host }}/collections/safety-security"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div>
+<div class = "container-colpice"> 
+  <img src = "https://cdn.shopify.com/s/files/1/0036/6333/1373/files/the_hunter_cap_tiny_life_supply.png?4278" class="colpic-pice">
+  <div class = "colpic-overla"></div>
+  <center><div class = "colpic-textboxe">Apparel</div><br/>
+    <a href = "https://{{ request.host }}/collections/apparel-1"><button type="submit" class="colpic-buttone">Shop Now</button></a></center>
+</div>
+</div>

@@ -1,0 +1,34 @@
+<style>.text-link{
+		font-color: $background-col;
+		}
+.text-link:hover{
+		font-color: $body-text-col;
+		}
+button{
+	border-color: $background-col;
+	background-color:  $footer-bg-col;
+	font-color: $background-col;
+}
+button:hover{
+	border-color: $footer-bg-col;
+	background-color: $background-col; 
+	font-color: $footer-bg-col;
+}
+.container-for-boxe{
+	background-color: $footer-bg-col;
+	text-align: center;
+    padding-bottom:0.0%;
+  	padding-right: 5%;
+}
+.smallicon{
+  height: 100px;
+  width: auto;
+  margin-bottom: 2.5%;
+}
+</style>
+<div class="container-for-boxe">
+  <img class = "smallicon" src = "{{ 'Message.png' | asset_url}}">
+  <h2 class ="text-link"><a href="www.tinylifesupply.com">STAY INFORMED</a></h2>
+  <p>Sign up for our monthly tiny life newsletter, and be entered in our monthly gear giveaway.</p><br/>
+  {% include 'mailing-signup' %}
+</div>

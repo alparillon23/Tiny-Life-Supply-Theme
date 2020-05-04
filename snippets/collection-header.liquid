@@ -1,0 +1,118 @@
+{% assign colinfo = collection.metafields.collection_media %}
+<style>
+  {%comment%}
+  DESKTOP
+  {%endcomment%}
+  .container-colpic
+  {
+    width:100%;
+    height:300px;
+    position: relative; 
+  }
+  .colpic-pic
+  {
+    width:100%;
+    height:300px;
+    object-fit: cover;
+    object-position: center; 
+  }
+  .colpic-textbox
+   {
+     position: absolute;
+     background-color: black;
+     text-align: center;
+     {% if collection.description == blank %}
+     padding-top: 1.5%;
+     {% endif %}
+     color: white;
+     opacity: 0.65;
+  	 top: 10%;
+     left: 5%;
+     width: 30%;
+   }
+  .colpic-video
+   {
+      position: absolute;
+      float: right;
+      text-align:right;
+      height: 250;
+      width: 400;
+      top:10%;
+      right:2.5%;
+      
+      
+   }
+  {%comment%}
+  MOBILE
+  {%endcomment%}
+  
+    @media (max-width:430px) 
+    {
+    .container-colpic
+  	{
+    width:100%;
+      {% if colinfo.video_embed %}  
+    height:600px;
+        {% else %}
+    height: 300px;
+      {% endif %}
+    position: relative;
+  	text-align: center;  
+  	}
+    .colpic-pic
+  	{
+    width:100%;
+    {% if colinfo.video_embed %}  
+    height: 600px; 
+      {% else %}
+    height: 300px;
+      {% endif %}
+    object-fit: cover;
+    object-position: center; 
+  	}
+    .colpic-textbox
+    {
+     position: absolute;
+     background-color: black;
+     color: white;
+     opacity: 0.65;
+  	 top: 5%;
+     left: 17.5%;
+     width: 70%;
+     padding: 5%;
+     text-align: center;
+     margin-bottom: 10%;
+    }
+    .colpic-video
+     {
+      margin-top: 10%
+      position: relative;
+      top:55%;
+      left:2.5%;
+     }
+      
+      
+    }
+
+</style>
+
+<div class="container-colpic">
+  {% if collection.image %}
+  <img src="{{ collection.image | img_url:'720x' }}" class="colpic-pic">
+  {% else %}
+  <img src="{{ shop.metafields.accentuate.collection_page_default_image }}" class="colpic-pic">
+  {%endif%}
+  <center>
+  <div class="colpic-textbox">
+    <h1 style="font-size:250%; color:white;">{{ collection.title }}</h1>
+    {% if collection.description != "" %}
+    <p>{{ collection.description }}</p>
+    {% endif %}
+  </div>
+  {% if colinfo.video_embed %}
+  <div class="colpic-video">
+    <iframe width="350" height="250" src="{{colinfo.video_embed}}?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  </center>
+  {% endif %}
+</div>

@@ -1,0 +1,66 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+ 
+.mySlides {display:none;}
+</style>
+<body>
+
+
+<div class="w3-content w3-display-container">
+
+<div class="w3-display-container mySlides">
+  <img src="https://scontent-yyz1-1.cdninstagram.com/vp/0304ccf3d3d8cc15749b80fd34c17c77/5DC59554/t51.2885-15/sh0.08/e35/s750x750/47583442_2205564706429939_6086400750580758405_n.jpg?_nc_ht=scontent-yyz1-1.cdninstagram.com&ig_cache_key=MTkzNjAzMzc2NjIwMDI3NTU1Ng%3D%3D.2" style="width:100%; height: 450px; object-fit: cover; object-position: center;">
+  <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
+    <a href = "https://www.instagram.com/p/BreLHPrh3Jk/" target="_blank">@singaporedude</a>
+  </div>
+</div>
+
+<div class="w3-display-container mySlides">
+  <img src="https://scontent-yyz1-1.cdninstagram.com/vp/e051b0318df9740e3435b5104c86b171/5DB83B2F/t51.2885-15/sh0.08/e35/s750x750/53399122_123783922047127_6653693412205134506_n.jpg?_nc_ht=scontent-yyz1-1.cdninstagram.com&ig_cache_key=MTk5Njc5OTQxNDI2NTQ3Mzg0Mg%3D%3D.2" style="width:100%; height: 450px; object-fit: cover; object-position: center;">
+  <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
+    <a href = "https://www.instagram.com/p/Bu2DnzfAGsy/" target="_blank">@dlhitzeman</a>
+  </div>
+</div>
+
+<div class="w3-display-container mySlides">
+  <img src="https://scontent-yyz1-1.cdninstagram.com/vp/57e05a2ba243228dc5183b3de80d3b14/5D18B619/t51.2885-15/e15/s640x640/42949600_1866802046738823_2889239559577046611_n.jpg?_nc_ht=scontent-yyz1-1.cdninstagram.com&_nc_cat=103" style="width:100%; height: 450px; object-fit: cover; object-position: center;">
+  <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
+    <a href="https://www.instagram.com/p/Bo0FK_VASr4/" target="_blank">@mike_abolitionist</a>
+  </div>
+</div>
+
+<div class="w3-display-container mySlides">
+  <img src="https://scontent-yyz1-1.cdninstagram.com/vp/6d21656db4dced70c45e0d0183efafb0/5DB8FCC8/t51.2885-15/sh0.08/e35/s750x750/43779397_324462015024857_3266789344897764343_n.jpg?_nc_ht=scontent-yyz1-1.cdninstagram.com&ig_cache_key=MTg4NzkzMTk3NzYxOTY4NTY5OA%3D%3D.2" style="width:100%; height: 450px; object-fit: cover; object-position: center;">
+  <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
+    <a href="https://www.instagram.com/p/BozSCGGH0FC/" target="_blank">@tinathebus</a>
+  </div>
+</div>
+
+
+<button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
+<button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
+
+</div>
+
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";  
+  }
+  x[slideIndex-1].style.display = "block";  
+}
+</script>
+
+</body>

@@ -1,0 +1,182 @@
+<style>
+  .image-gallery-container
+  {
+    position: relative;
+    text-align: center;
+    width:100%;
+    height:250px;
+  }
+  .image-gallery-box
+  {
+    width:100%; 
+    height: 250px; 
+    object-fit: cover; 
+    object-position: center;
+    margin-bottom: 10px;
+    
+  }
+  
+  .overlay-imgb {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #FFFFFF;
+}
+  .image-gallery-container:hover .overlay-imgb{
+       opacity: 0.6;
+    }
+  .handle-for-insta
+  {
+    position:absolute;
+    color:#000000;
+    text-align:center;
+    padding-left:50%;
+    top: 50%;
+    font-size: 1.5em;
+  }
+imge {
+  width: 100%;
+  height: auto;
+	padding: 5px;
+}
+
+h2e {
+  text-align:center;
+	padding-bottom: 1em;
+}
+
+.slick-dots {
+	text-align: center;
+  margin: 0 0 10px 0;
+  padding: 0;
+  li {
+    display:inline-block;
+    margin-left: 4px;
+    margin-right: 4px;
+    &.slick-active {
+      button {
+        background-color:black;
+      }
+    }
+    button {
+      font: 0/0 a;
+      text-shadow: none;
+      color: transparent;
+      background-color:#999;
+      border:none;
+      width: 15px;
+      height: 15px;
+      border-radius:50%;
+    }
+		:hover{
+			background-color: black;
+		}
+  }
+}
+
+/* Custom Arrow */
+.prevp{
+	color: #999;
+	position: absolute;
+	top: 38%;
+	left: -2em;
+	font-size: 1.5em;
+		:hover{
+			cursor: pointer;
+			color: black;
+		}
+}
+.nextp{
+	color: #999;
+	position: absolute;
+	top: 38%;
+	right: -2em;
+	font-size: 1.5em;
+	:hover{
+			cursor: pointer;
+			color: black;
+		}
+}
+
+@media screen and (max-width: 800px) {
+    .next {
+        display: none !important;
+    }
+}
+
+</style>
+
+<div class="container">
+    <div class="row">
+      <div class="col-md-12 heroSlider-fixed">
+        {%- if info.image_post -%}
+         <!-- Slider -->
+        <div class="slider responsive">
+          {% for image in info.image_post %}
+          			<a href = "{{ image }}" target="_blank"><div class= "image-gallery-container">
+						<img src="{{info.source_image[forloop.index0]}}" class="image-gallery-box">
+                      	<div class = "overlay-imgb">
+      						<div class="handle-for-insta">{{info.image_handle[forloop.index0]}}</div>
+    					</div>
+                      </div></a>
+          {% endfor %}
+					
+        </div>
+				 <!-- control arrows -->
+				<div class="prevp">
+					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				</div>
+				<div class="nextp">
+					<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				</div>
+			{%- endif -%}	
+      </div>
+    </div>
+  </div>
+
+<script>
+  $('.responsive').slick({
+  dots: true,
+	prevArrow: $('.prevp'),
+	nextArrow: $('.nextp'),
+  infinite: false,
+  speed: 300,
+  slidesToShow: 4,
+  slidesToScroll: 4,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+    // You can unslick at a given breakpoint now by adding:
+    // settings: "unslick"
+    // instead of a settings object
+  ]
+});
+  
+</script>

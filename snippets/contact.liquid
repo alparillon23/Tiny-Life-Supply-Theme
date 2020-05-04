@@ -1,0 +1,35 @@
+<style>.text-link{
+		font-color: $background-col;
+		}
+.text-link:hover{
+		font-color: $body-text-col;
+		}
+button{
+	border-color: $background-col;
+	background-color:  $footer-bg-col;
+	font-color: $background-col;
+}
+button:hover{
+	border-color: $footer-bg-col;
+	background-color: $background-col; 
+	font-color: $footer-bg-col;
+}
+.container-for-boxi{
+	background-color: $footer-bg-col;
+	text-align: center;
+  	padding-bottom: 0.5%;
+  	padding-right: 5%
+}
+.smallicon{
+  height: 100px;
+  width: auto;
+  margin-bottom: 2.5%;
+}
+
+</style>
+<div class="container-for-boxi">
+  <img class="smallicon" src = "{{ 'Phone.png' | asset_url }}">
+
+  <p>Whether you have a question about a product or need assistance with your order, we're here to help.</p><br/>
+  <a href="/pages/contact"><button> Contact </button></a>
+</div>

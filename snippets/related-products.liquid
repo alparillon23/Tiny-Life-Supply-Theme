@@ -1,0 +1,189 @@
+{% assign show_related = false %}
+{% capture related_markup %}
+
+{% assign product_collection = collection %}
+{% unless product_collection %}{% assign need_new_collection = true %}{% else %}{% assign need_new_collection = false %}{% endunless %}
+  {% if need_new_collection or product_collection.handle == 'all' or product_collection.handle contains 'frontpage' %}
+  {% for coll in product.collections %}
+    {% unless coll.handle == 'all' or coll.handle contains 'frontpage' %}
+      {% assign product_collection = coll %}
+    {% endunless %}
+  {% endfor %}
+{% endif %}
+
+<section class="border-top section products-section">
+  {% assign related-prod = product.metafields.related %}
+  {% if related-prod.accessory_heading != blank or related-prod.suggestion_heading != blank %}
+  {% if related-prod.accessory_heading %}
+  {% if related-prod.accessory_product != blank %}
+  <div class="container">
+    <div class="opposing-items">
+      <h1 class="section-heading left">{{ related-prod.accessory_heading }}</h1>
+    </div>
+
+    <div class="row grid one-row" data-normheights=".image" data-normheights-inner="img">
+      {% assign onewi = related-prod.accessory_product | split: '|'  %}
+      {% assign firsto = onewi.first | split: '["' %}
+      {% assign lasto = onewi.last | split: '"]' %}
+      {% assign product_limit_plus_one = section.settings.products_per_row | plus: 1 %}
+      {% assign product_iter = 1 %}
+      {% for one in  related-prod.accessory_product limit: product_limit_plus_one %}
+      
+      
+      	{% if product.handle != all_products[one].handle and product_iter < product_limit_plus_one %}
+          {% include 'product-block', product: all_products[one], forloop_index: product_iter %}
+        {% endif %}
+      
+      
+      	{% assign show_related = true %}
+        {% assign product_iter = product_iter | plus: 1 %}
+      {% endfor %}
+    </div>
+  </div>
+  {% if related-prod.accessory_collection != blank %}
+  {% for collect in related-prod.accessory_collection %}
+  {% assign collection_re = collections[collect]%}
+    <div class="container">
+    <div class="opposing-items">
+      <h1 class="section-heading left">&nbsp;</h1>
+      <a class="more-link" href="{{collection_re.url }}">{{ 'collections.general.view_all' | t }}</a>
+    </div>
+
+    <div class="row grid one-row" data-normheights=".image" data-normheights-inner="img">
+      {% assign product_limit_plus_one = section.settings.products_per_row | plus: 1 %}
+      {% assign product_iter = 1 %}
+      {% for related_product in collection_re.products limit: product_limit_plus_one %}
+      	{% if product.handle != related_product.handle and product_iter < product_limit_plus_one %}
+          {% include 'product-block', product: related_product, forloop_index: product_iter %}
+          {% assign show_related = true %}
+          {% assign product_iter = product_iter | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+  {% endif %}
+  {% else %}
+  {% if related-prod.accessory_collection != blank %}
+  {% for collect in related-prod.accessory_collection %}
+  {% assign collection_re = collections[collect]%}
+    <div class="container">
+    <div class="opposing-items">
+      <h1 class="section-heading left">{% if forloop.first == true %}{{ related-prod.accessory_heading }}{% else %}&nbsp;{%endif%}</h1>
+      <a class="more-link" href="{{collection_re.url }}">{{ 'collections.general.view_all' | t }}</a>
+    </div>
+
+    <div class="row grid one-row" data-normheights=".image" data-normheights-inner="img">
+      {% assign product_limit_plus_one = section.settings.products_per_row | plus: 1 %}
+      {% assign product_iter = 1 %}
+      {% for related_product in collection_re.products limit: product_limit_plus_one %}
+      	{% if product.handle != related_product.handle and product_iter < product_limit_plus_one %}
+          {% include 'product-block', product: related_product, forloop_index: product_iter %}
+          {% assign show_related = true %}
+          {% assign product_iter = product_iter | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+  {% endif %}
+  {% endif %}
+  {% endif %}
+  
+  <!-- SUGGESTED -->
+  {% if related-prod.suggestion_heading %}
+  {% if related-prod.suggested_product != blank %}
+  <div class="container">
+    <div class="opposing-items">
+      <h1 class="section-heading left">{{ related-prod.suggestion_heading }}</h1>
+    </div>
+
+    <div class="row grid one-row" data-normheights=".image" data-normheights-inner="img">
+      {% assign product_limit_plus_one = section.settings.products_per_row | plus: 1 %}
+      {% assign product_iter = 1 %}
+      {% for one in  related-prod.suggested_product limit: product_limit_plus_one %}
+     
+      
+      	{% if product.handle != all_products[one].handle and product_iter < product_limit_plus_one %}
+          {% include 'product-block', product: all_products[one], forloop_index: product_iter %}
+        {% endif %}
+      
+      
+      	{% assign show_related = true %}
+        {% assign product_iter = product_iter | plus: 1 %}
+      {% endfor %}
+    </div>
+  </div>
+  {% if related-prod.suggested_collection != blank %}
+  {% for collect in related-prod.suggested_collection %}
+  {% assign collection_re = collections[collect]%}
+    <div class="container">
+    <div class="opposing-items">
+      <h1 class="section-heading left">&nbsp;</h1>
+      <a class="more-link" href="{{collection_re.url }}">{{ 'collections.general.view_all' | t }}</a>
+    </div>
+
+    <div class="row grid one-row" data-normheights=".image" data-normheights-inner="img">
+      {% assign product_limit_plus_one = section.settings.products_per_row | plus: 1 %}
+      {% assign product_iter = 1 %}
+      {% for related_product in collection_re.products limit: product_limit_plus_one %}
+      	{% if product.handle != related_product.handle and product_iter < product_limit_plus_one %}
+          {% include 'product-block', product: related_product, forloop_index: product_iter %}
+          {% assign show_related = true %}
+          {% assign product_iter = product_iter | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+  {% endif %}
+  {% else %}
+  {% if related-prod.suggested_collection != blank %}
+  {% for collect in related-prod.suggested_collection %}
+  {% assign collection_re = collections[collect]%}
+    <div class="container">
+    <div class="opposing-items">
+      <h1 class="section-heading left">{% if forloop.first == true %}{{ related-prod.suggestion_heading }}{% else %}&nbsp;{%endif%}</h1>
+      <a class="more-link" href="{{collection_re.url }}">{{ 'collections.general.view_all' | t }}</a>
+    </div>
+
+    <div class="row grid one-row" data-normheights=".image" data-normheights-inner="img">
+      {% assign product_limit_plus_one = section.settings.products_per_row | plus: 1 %}
+      {% assign product_iter = 1 %}
+      {% for related_product in collection_re.products limit: product_limit_plus_one %}
+      	{% if product.handle != related_product.handle and product_iter < product_limit_plus_one %}
+          {% include 'product-block', product: related_product, forloop_index: product_iter %}
+          {% assign show_related = true %}
+          {% assign product_iter = product_iter | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+  {% endif %}
+  {% endif %}
+  {% endif %}
+  {% else %}
+    <div class="container">
+    <div class="opposing-items">
+      <h1 class="section-heading left">{{ 'products.product.related_title' | t }}</h1>
+      <a class="more-link" href="{{ product_collection.url }}">{{ 'collections.general.view_all' | t }}</a>
+    </div>
+
+    <div class="row grid one-row" data-normheights=".image" data-normheights-inner="img">
+      {% assign product_limit_plus_one = section.settings.products_per_row | plus: 1 %}
+      {% assign product_iter = 1 %}
+      {% for related_product in product_collection.products limit: product_limit_plus_one %}
+      	{% if product.handle != related_product.handle and product_iter < product_limit_plus_one %}
+          {% include 'product-block', product: related_product, forloop_index: product_iter %}
+          {% assign show_related = true %}
+          {% assign product_iter = product_iter | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+</section>  
+
+{% endcapture %}
+{% if show_related %}{{ related_markup }}{% endif %}

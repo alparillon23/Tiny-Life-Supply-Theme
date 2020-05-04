@@ -1,0 +1,21 @@
+{% assign info = product.metafields.additional_info %}
+{% assign sizee = info.product_light.size | modulo: 3  %}
+{% if info.product_light %}
+<div class = "column full">
+  <div class = "reading-column">
+{% for prod in info.product_light %}
+
+<span class = {% if info.product_light.size == 1 %}"column flex max-cols-1"{% else if sizee == 1 %}"column flex max-cols-4"{% else if sizee == 2 %}"column flex max-cols-2"{% else %}"column flex max-cols-3"{%endif%}> 
+<a href="{{ prod }}" class="group1">
+<img style="object-fit: cover; object-position: center; height: 150px; width: 400px; margin-bottom: 50px" src ="{{ prod }}">
+</a>
+</span>
+  
+{% endfor %}
+  </div>
+  </div>
+
+
+
+
+{% endif %}

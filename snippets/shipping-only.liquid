@@ -1,0 +1,27 @@
+
+{% assign ps = product.metafields.pricing %}
+{% assign bon = false %}
+
+{% if ps.us_only and ps.ca_only %}
+{% assign bon = true %}
+{% endif %}
+
+{% if ps.us_only == blank and ps.ca_only == blank %}
+{% assign bon = true %}
+{% endif %}
+
+{% if bon == false %}
+{% if ps.us_only %}
+{% if shop.metafields.accentuate.country == 'CA' %}
+<span style="float:right;width:80%;margin-top:-1%;"><a href="https://tinylifesupply.com/pages/shipping"><img src="https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Only_Ships_Within_The_USA_1.png?v=1576185874"></a></span>
+{% endif %}
+{% else %}
+{% if shop.metafields.accentuate.country == 'US' %}
+<span style="float:right;width:80%;margin-top:-1%;"><a href="https://tinylifesupply.com/pages/shipping"><img src="https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Only_Ships_Within_Canada_1.png?v=1576185874"></a></span>
+{% endif %}
+{% endif %}
+{% endif %}
+
+
+
+<!-- Logic here is that if its not both or neither, then it must be one of them -->

@@ -1,0 +1,107 @@
+<style>
+  #content, #page-wrap-content
+  {
+    background-color: #696969;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    
+  }
+  .dark-ren-field
+  {
+    width: 33.3333%;
+    height: 30%;
+    padding: 0;
+    margin: 0;
+    float:left;
+    background-color: #696969;
+    
+    
+  }
+  .light-ren-field
+  {
+    width: 33.3333%;
+    height: 30%;
+    padding: 0;
+    margin: 0;
+    float:left;
+    background-color: #ccc;
+    
+    
+  }
+  .image-ren
+  {
+    padding-top: 10%;
+    width:80%;
+    height: 60%;
+    
+  }
+  
+  @media (max-width: 430px)
+    {
+  .dark-ren-field
+  {
+    width: 50%;
+    height: 30%;
+    padding: 0;
+    margin: 0;
+    float:left;
+    background-color: #696969;
+    
+    
+  }
+  .light-ren-field
+  {
+    width: 50%;
+    height: 30%;
+    padding: 0;
+    margin: 0;
+    float:left;
+    background-color: #ccc;
+    
+    
+  }
+  .image-ren
+  {
+    padding-top: 10%;
+    width:80%;
+    height: 60%;
+    
+  }
+      
+      
+      
+    }
+  
+  
+  
+</style>
+
+
+<center><h1 style="color:#FFFFFF; font-size:2em;"> Tiny Home Builder Spotlight </h1></center>
+
+
+<div class="column full">
+  
+  {% assign alt_variable = 0 %}
+{% for article in blogs.builders.articles %}
+	{% if article.tags contains 'Builder Profile' %}
+		<div class="{% if alt_variable == 0 %}light-{% else %}dark-{% endif %}ren-field">
+          <center>
+            <img src="{{ article.image.src  | img_url:'720x' }}" class="image-ren" >
+            <p>&nbsp;</p>
+            <a href="{{ article.url }}"><button>{{article.title}}</button></a>
+              </center>
+          	<p>&nbsp;</p>
+		</div>
+        {% if alt_variable == 0 %}
+          {% assign alt_variable = 1 %}
+         {% else %}
+          {% assign alt_variable = 0 %}
+         {% endif %}
+          
+	{% endif %}
+
+{% endfor %}
+</div>
+
+

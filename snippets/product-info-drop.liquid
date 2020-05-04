@@ -1,0 +1,125 @@
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+.collapsible {
+  background-color: #FFFFFF;
+  color: #4D4D4D;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border-style: solid;
+  border-width: 0 0 1px 0;
+  text-align: left;
+  outline: none;
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;  
+}
+
+<!--.active, .collapsible:hover {
+  background:  #FFFFFF;
+  color:#4D4D4D;
+}-->
+
+.collapsible:after {
+  content: '\002B';
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+  
+}
+
+.active:after {
+  content: '\2212';
+}
+
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color:  #FFFFFF;
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;  
+}
+</style>
+</head>
+<body>
+
+
+{%- if info.features -%}<button class="collapsible">Features</button>
+<div class="content">
+     <div class = "column full">
+    
+    {% for feat in info.features %}
+    <span class = "column flex max-cols-{{info.features.size}}">
+      {{ feat }}</span>
+    {% endfor %}
+  </div>
+</div>{%- endif -%}
+{%- if info.specs -%}<button class="collapsible">Specs</button>
+<div class="content">
+  <div class= "column full">
+  {% for spec in info.specs %}
+  <span class = "column flex max-cols-{{info.specs.size}}">
+    {{spec}}
+    </span>
+  {% endfor %}
+  </div>
+  </div>{%- endif -%}
+{%- if info.manual_link and info.manual_title -%}<button class="collapsible">Manuals</button>
+<div class="content">
+   {%- if info.manual_link.size < info.manual_title.size -%}
+  {% for link in info.manual_link %}
+  <p><u><a href="{{info.manual_link[forloop.index0]}}">{{info.manual_title[forloop.index0]}}</a></u></p>
+  {% endfor %}
+  {%- else -%}
+  {% for link in info.manual_title %}
+  <p><u><a href="{{info.manual_link[forloop.index0]}}">{{info.manual_title[forloop.index0]}}</a></u></p>
+  {% endfor %}
+  {%- endif -%}
+  </div>{%- endif -%}
+{%- if info.ship_from or info.ship_from or info.ship_with or info.ship_within or info.ship_notes or info.map_shipping-%}<button class="collapsible">Shipping</button>
+<div class="content">
+    <div class = "column full">
+    {%- if info.map_shipping -%}
+    <span class = "column flex max-cols-2"><center>{%- if info.free_shipping -%}<img src="https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Free_Shipping___Tiny_House___Tiny_Life_Supply_copy.png?4452">{%- endif -%}
+      {%- if info.ship_from -%}<h4>Ships from: {{info.ship_from}}.</h4>{%- endif -%}
+      {%- if info.ship_with -%}<h4>Ships with: {{info.ship_with}}.</h4>{%- endif -%}
+      {%- if info.ship_within -%}<h4>Ships within: {{info.ship_within}}.</h4>{%- endif -%}
+      {%- if info.ship_notes -%}<h4>Note: {{info.ship_notes}}</h4>{%- endif -%}
+      </center></span>
+    <span class = "column flex max-cols-2">{{info.map_shipping}}</span>
+    {%- else -%}
+     <center>{%- if info.free_shipping -%}<img src="https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Free_Shipping___Tiny_House___Tiny_Life_Supply_copy.png?4452">{%- endif -%}
+      {%- if info.ship_from -%}<h4>Ships from: {{info.ship_from}}.</h4>{%- endif -%}
+      {%- if info.ship_with -%}<h4>Ships with: {{info.ship_with}}.</h4>{%- endif -%}
+      {%- if info.ship_within -%}<h4>Ships within: {{info.ship_within}}.</h4>{%- endif -%}
+      {%- if info.ship_notes -%}<h4>Note: {{info.ship_notes}}</h4>{%- endif -%}
+      </center>
+    {%- endif -%}
+    
+  </div>
+  </div>{%- endif -%}
+{%- if info.warranty -%}<button class="collapsible">Returns &amp; Warranty</button>
+<div class="content">
+  <div class = "column full">
+    {{info.warranty}} </div></div>{%- endif -%}
+
+</body>
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+</script>
+

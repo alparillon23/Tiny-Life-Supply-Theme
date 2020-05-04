@@ -1,0 +1,14 @@
+
+{% assign info = product.metafields.additional_info %}
+
+
+{%- if info.videos -%}
+
+<div class="column full">
+  {% for video in info.videos %}
+  <span><center>{{video}}</center><br/></span>  
+  {% endfor %}
+  
+</div>
+<br/><br/>
+{%- endif -%}

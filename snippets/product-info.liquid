@@ -1,0 +1,213 @@
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  color:  #A9A9A9;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: $links-col;
+  color: #000000;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+  color: #000000;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  -webkit-animation: fadeEffect 1s;
+  animation: fadeEffect 1s;
+}
+
+/* Fade in tabs */
+@-webkit-keyframes fadeEffect {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeEffect {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+</style>
+</head>
+<body>
+
+{% assign info = product.metafields.additional_info %}
+<!-- Instructions to Add New Fields To Be Displayed
+		1. Use Accentuate>Product>Add Fields
+		2. Enter a unique lowercase word (or multiple_like_this). This will be the nameOfMetafield
+		3. Enter additional_info as the namespace (REQUIRED)
+        4. Enter a Label (Title of metafield that you will actually see in the entry form)
+		5. Next. In data or Reference: Pick Text if your field is simply words, else pick HTML Text
+		6. Instructions: Description of the Field (What it's for?)
+		7. Next. Click On Repeatable if you will want multiple instances of the same field (multiple links for example)
+		8. Done. Save. Go to Products>Your Product(s) that you want to enter information for>More Actions>Accentuate Custom Fields
+		9. Enter the information for that field.
+		10. Go to Line 88 and do that instruction
+		11. Go to Line 167 and do that instruction
+		12. Save! Then view your product(s) to make sure it appears. Email:alparillon@gmail.com if you're encountering issues.
+
+-->
+
+{%- if info.features -%}
+<h3>Additional Information</h3>
+
+
+<div class="tab">
+  {%- if info.features -%}<button class="tablinks" onclick="openTab(event, 'Features')" id="defaultOpen">Features</button>{%- endif -%}
+  {%- if info.specs -%}<button class="tablinks" onclick="openTab(event, 'Specs')">Specs</button>{%- endif -%}
+  {%- if info.manual_link and info.manual_title -%}<button class="tablinks" onclick="openTab(event, 'Manuals')">Manuals</button>{%- endif -%}
+  {%- if info.ship_from -%}<button class="tablinks" onclick="openTab(event, 'Shipping')">Shipping</button>{%- endif -%}
+  {%- if info.warranty -%}<button class="tablinks" onclick="openTab(event, 'Returns')">Returns & Warranty</button>{%- endif -%}
+  
+  {% comment %} 
+  Adding Extra Fields?
+	    Insert the following line:
+         {%- if info.nameOfMetafield -%}<button class="tablinks" onclick="openTab(event, '[One Word Name For Tab - Not Shown]')" id="defaultOpen">[Desired Name of Tab]</button>{%- endif -%}
+     directly above this instruction and fill in the nameofMetafield, and [fields] correctly
+  {% endcomment %}
+</div>
+
+{%- if info.features -%}
+<div id="Features" class="tabcontent">
+  <div class = "column full">
+    
+    {% for feat in info.features %}
+    <span class = "column flex max-cols-{{info.features.size}}">
+      {{ feat }}</span>
+    {% endfor %}
+  </div>
+</div>{%- endif -%}
+
+{%- if info.specs -%}
+<div id="Specs" class="tabcontent">
+  <div class= "column full">
+  {% for spec in info.specs %}
+  <span class = "column flex max-cols-{{info.specs.size}}">
+    {{spec}}
+    </span>
+    <br/>{% endfor %}
+  </div>
+</div>{%- endif -%}
+  
+
+  <!-- If Else + Two Parallel For's Fixes a standard sync issue -->
+{%- if info.manual_link and info.manual_title -%}
+<div id="Manuals" class="tabcontent">
+  {%- if info.manual_link.size < info.manual_title.size -%}
+  {% for link in info.manual_link %}
+  <p><u><a href="{{info.manual_link[forloop.index0]}}">{{info.manual_title[forloop.index0]}}</a></u></p>
+  {% endfor %}
+  {%- else -%}
+  {% for link in info.manual_title %}
+  <p><u><a href="{{info.manual_link[forloop.index0]}}">{{info.manual_title[forloop.index0]}}</a></u></p>
+  {% endfor %}
+  {%- endif -%}
+</div>
+{%- endif -%}
+
+  <!-- Inner If Makes the Embed Map feature Optional -->
+
+{%- if info.ship_from -%}
+<div id="Shipping" class="tabcontent">
+  <div class = "column full">
+    {%- if info.map_shipping -%}
+    <span class = "column flex max-cols-2"><center><img src="https://static1.squarespace.com/static/5785785bc534a5ef75f91235/t/5b50d189562fa7d2dabde746/1532023195176/?format=500w">
+      <h4>Ships from: {{info.ship_from}}.</h4>
+      <h4>Ships with: {{info.ship_with}}.</h4>
+      <h4>Ships within: {{info.ship_within}}.</h4>
+      {%- if info.ship_notes -%}<h4>Note: {{info.ship_notes}}</h4>{%- endif -%}
+      </center></span>
+    <span class = "column flex max-cols-2">{{info.map_shipping}}</span>
+    {%- else -%}
+     <center><img src="https://cdn.shopify.com/s/files/1/0036/6333/1373/files/Free_Shipping___Tiny_House___Tiny_Life_Supply_copy.png?4452">
+      <h4>Ships from: {{info.ship_from}}.</h4>
+      <h4>Ships with: {{info.ship_with}}.</h4>
+      <h4>Ships within: {{info.ship_within}}.</h4>
+      {%- if info.ship_notes -%}<h4>Note: {{info.ship_notes}}</h4>{%- endif -%}
+      </center>
+    {%- endif -%}
+    
+  </div>
+</div>
+{%- endif -%}
+
+{%- if info.warranty -%}
+<div id="Returns" class="tabcontent">
+  <div class = "column full">
+    {{info.warranty}} </div>
+</div>
+{%- endif -%}
+
+  {% comment %} 
+  Adding Extra Fields?
+	    Insert the following code:
+         {%- if info.nameOfMetafield -%}
+				<div id="[One Word Name For Tab - Not Shown]" class="tabcontent">
+  				<div class = "column full">
+    					{{info.nameOfMetafield}} </div>
+				</div>
+		{%- endif -%}
+     directly above this instruction and fill in the nameOfMetafield, [fields] correctly
+     if field is HTML Text - no further action is required
+	 if field is Text - Format the section as desired (with HTML) using {{info.nameOfMetafield}} 
+     where you'd like to insert that field value
+  	 if field is repeatable, use this code inside of the 'column full' div
+  
+  		{% for object in info.nameOfMetafield %}
+  			<span class = "column flex max-cols-{{info.nameOfMetafield.size}}">
+              {{info.nameOfMetafield[forloop.index0]}}
+  			</span>
+  		{% endfor %} 
+  
+  		(WARNING: KEEP REPEATABLE FIELDS 1-4 max for best results)
+  
+  {% endcomment %} 
+
+
+{%- endif -%}
+<script>
+function openTab(evt, tabName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+  
+  
+}
+  document.getElementById("defaultOpen").click();
+</script>
+   
+</body>

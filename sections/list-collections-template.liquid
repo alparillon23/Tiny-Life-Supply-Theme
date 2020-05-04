@@ -1,0 +1,304 @@
+<div class="container">
+
+  {% comment %}
+  <div class="inline-row cf">
+    <!-- Begin breadcrumbs -->
+    <div class="breadcrumbs inline-item left">
+      <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{{ shop.url }}" title="{{ shop.name | escape }}" itemprop="url"><span itemprop="title">{{ 'general.breadcrumbs.home' | t }}</span></a></span>
+      <span class="divider">{{ 'general.breadcrumbs.divider_html' | t }}</span>
+      <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/collections" title="{{ 'collections.collection_list.title' | t | escape }}" itemprop="url"><span itemprop="title">{{ 'collections.collection_list.title' | t }}</span></a></span>
+    </div>
+    <!-- End breadcrumbs -->
+
+    <div class="inline-item right last">
+      {% include 'sharing' %}
+    </div>
+  </div>
+  {% endcomment %}
+
+
+  <div class="collection-header">
+    <div class="header-text">
+      <h1 class="page-title">{{ section.settings.title | escape }}</h1>
+    </div>
+  </div>
+</div>
+
+<div id="collections" class="{% if section.settings.sidebar_show %}container show-sidebar{% endif %}" data-section-type="collection-listing">
+
+  {% if section.settings.sidebar_show %}
+    <div class="sidebar-cont cf">
+      <div class="sidebar">
+        <h2 class="h4">{{ section.settings.sidebar_title | escape }}</h2>
+        <ul class="plain">
+          {% for link in linklists[section.settings.sidebar_linklist].links %}
+            <li{% if link.active %} class="active"{% endif %}>
+              {% if link.links != blank %}
+              <h6 class="heading">{{ link.title | link_to: link.url }}</h6>
+              <ul class="plain">
+                {% for child_link in link.links %}
+                <li{% if child_link.active %} class="active"{% endif %}>
+                  {{ child_link.title | link_to: child_link.url }}
+                </li>
+                {% endfor %}
+              </ul>
+              {% else %}
+                {{ link.title | link_to: link.url }}
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+
+        {{ pages[section.settings.sidebar_page].content }}
+      </div>
+
+      <div class="beside-sidebar">
+	{% endif %}
+
+        {% if section.settings.display_type == 'all' %}
+
+          {% paginate collections by 24 %}
+
+            {% if section.settings.layout == 'rows' %}
+
+              {% for collection in collections %}
+                <div class="section {% unless forloop.last %}border-bottom{% endunless %} {% if forloop.first and section.settings.sidebar_show %}padless-top{% endif %}">
+                  {% unless section.settings.sidebar_show %}<div class="container">{% endunless %}
+                  <div class="opposing-items">
+                    <h2 class="left section-heading">{{ collection.title | link_to: collection.url }}</h2>
+                    <a class="more-link" href="{{ collection.url }}">
+                      {{ 'collections.general.view_all' | t }}
+                    </a>
+                  </div>
+
+                  <div class="row grid one-row" data-normheights=".image" data-normheights-inner="img">
+                    {% for product in collection.products limit: section.settings.products_per_row %}
+                    {% include 'product-block', products_per_row: section.settings.products_per_row %}
+                    {% endfor %}
+                  </div>
+                  {% unless section.settings.sidebar_show %}</div>{% endunless %}
+                </div>
+              {% endfor %}
+
+            {% else %}
+
+              {% unless section.settings.sidebar_show %}<div class="container">{% endunless %}
+              <div class="row grid" data-normheights=".image" data-normheights-inner="img">
+                {% for collection in collections %}
+                  <div class="product-block flex column max-cols-{{ section.settings.products_per_row }} min-cols-1">
+                    <div class="image">
+                      <div class="inner">
+                        <a href="{{ collection.url }}">
+                          {% if collection.image != blank %}
+                            {% include 'responsive-image', image: collection.image %}
+                          {% elsif collection.all_products_count > 0 and collection.all_products.first.featured_image != blank %}
+                            {% include 'responsive-image', image: collection.all_products.first.featured_image %}
+                          {% else %}
+                            <div class="placeholder-image">{{ 'collection-1' | placeholder_svg_tag }}</div>
+                          {% endif %}
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="title">{{ collection.title | link_to: collection.url }}</div>
+                  </div>
+                {% endfor %}
+              </div>
+              {% unless section.settings.sidebar_show %}</div>{% endunless %}
+
+            {% endif %}
+
+            {% if paginate.pages > 1 %}
+              <div class="{% unless section.settings.sidebar_show %}container{% endunless %} align-right">
+                {% include 'pagination' %}
+              </div>
+            {% endif %}
+
+          {% endpaginate %}
+
+        {% else %}
+
+          {% if section.settings.layout == 'rows' %}
+
+            {% for block in section.blocks %}
+              {%- assign collection = collections[block.settings.collection] -%}
+              <div class="section {% unless forloop.last %}border-bottom{% endunless %} {% if forloop.first and section.settings.sidebar_show %}padless-top{% endif %}">
+                {% unless section.settings.sidebar_show %}<div class="container">{% endunless %}
+                <div class="opposing-items">
+                  <h2 class="left section-heading">{{ collection.title | link_to: collection.url }}</h2>
+                  <a class="more-link" href="{{ collection.url }}">
+                    {{ 'collections.general.view_all' | t }}
+                  </a>
+                </div>
+
+                <div class="row grid one-row" data-normheights=".image" data-normheights-inner="img">
+                  {% for product in collection.products limit: section.settings.products_per_row %}
+                  {% include 'product-block', products_per_row: section.settings.products_per_row %}
+                  {% endfor %}
+                </div>
+                {% unless section.settings.sidebar_show %}</div>{% endunless %}
+              </div>
+            {% endfor %}
+
+          {% else %}
+
+            {% unless section.settings.sidebar_show %}<div class="container">{% endunless %}
+            <div class="row grid" data-normheights=".image" data-normheights-inner="img">
+              {% for block in section.blocks %}
+                {%- assign collection = collections[block.settings.collection] -%}
+                {% if collection != blank %}
+                  <div class="product-block flex column max-cols-{{ section.settings.products_per_row }} min-cols-1">
+                    <div class="image">
+                      <div class="inner">
+                        <a href="{{ collection.url }}">
+                          {% if collection.image != blank %}
+                            {% include 'responsive-image', image: collection.image %}
+                          {% elsif collection.all_products_count > 0 and collection.all_products.first.featured_image != blank %}
+                            {% include 'responsive-image', image: collection.all_products.first.featured_image %}
+                          {% else %}
+                            <div class="placeholder-image">{{ 'collection-1' | placeholder_svg_tag }}</div>
+                          {% endif %}
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="title">{{ collection.title | link_to: collection.url }}</div>
+                  </div>
+                {% else %}
+                  <div class="product-block flex column max-cols-{{ section.settings.products_per_row }} min-cols-1">
+                    <div class="image">
+                      <div class="inner">
+                        {% capture placeholder_svg_name %}collection-{{ forloop.index | modulo: 6 | plus: 1 }}{% endcapture %}
+                        <div class="placeholder-image">{{ placeholder_svg_name | placeholder_svg_tag }}</div>
+                      </div>
+                    </div>
+
+                    <div class="title">{{ "home_page.onboarding.collection_name" | t: number: forloop.index }}</div>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+            {% unless section.settings.sidebar_show %}</div>{% endunless %}
+
+          {% endif %}
+
+        {% endif %}
+
+  {% if section.settings.sidebar_show %}
+      </div>
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+  {
+    "name": "Collection list",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Collection list"
+      },
+      {
+        "type": "select",
+        "id": "layout",
+        "label": "Layout",
+        "default": "rows",
+        "options": [
+          {
+            "value": "rows",
+            "label": "Rows"
+          },
+          {
+            "value": "grid",
+            "label": "Grid"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": "All of your collections are listed by default. To customize your list, choose 'Selected' and add collections."
+      },
+      {
+        "type": "radio",
+        "id": "display_type",
+        "label": "Select collections to show",
+        "default": "all",
+        "options": [
+          {
+            "value": "all",
+            "label": "All"
+          },
+          {
+            "value": "selected",
+            "label": "Selected"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "products_per_row",
+        "label": "Maximum number of items per row",
+        "options": [
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          },
+          {
+            "value": "6",
+            "label": "6"
+          }
+        ],
+        "default": "4"
+      },
+      {
+        "type": "header",
+        "content": "Sidebar"
+      },
+      {
+        "type": "checkbox",
+        "id": "sidebar_show",
+        "label": "Show sidebar",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "sidebar_title",
+        "label": "Heading",
+        "default": "Categories"
+      },
+      {
+        "type": "link_list",
+        "id": "sidebar_linklist",
+        "label": "Sidebar menu"
+      },
+      {
+        "type": "page",
+        "id": "sidebar_page",
+        "label": "Page to show under menu"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Collection",
+        "settings": [
+          {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,120 @@
+<style>
+ 
+    @media screen and (max-width: 480px){
+  
+  .span-for-gallery
+      {
+        float: left;
+        width: 50%;
+        padding: 5px;
+      }
+  .image-gallery-container
+  {
+    position: relative;
+    text-align: center;
+    width:100%;
+    height:150px;
+  }
+  .image-gallery-box
+  {
+    width:150px; 
+    height: 150px; 
+    object-fit: cover; 
+    object-position: center;
+    margin-bottom: 10px;
+    
+  }
+  
+  .overlay-imgb {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #FFFFFF;
+}
+  .image-gallery-container:hover .overlay-imgb{
+       opacity: 0.6;
+    }
+  .handle-for-insta
+  {
+    position:absolute;
+    color:#000000;
+    text-align:center;
+    padding-left:15%;
+    top: 50%;
+    font-size: 1.00em;
+  }
+  }
+  @media screen and (min-width: 480px){
+  .span-for-gallery
+    {
+      	float:left;
+      	width:25%; 
+      	padding:5px;
+    }
+  .image-gallery-container
+  {
+    position: relative;
+    text-align: center;
+    width:100%;
+    height:250px;
+  }
+  .image-gallery-box
+  {
+    width:250px; 
+    height: 250px; 
+    object-fit: cover; 
+    object-position: center;
+    margin-bottom: 10px;
+    
+  }
+  
+  .overlay-imgb {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #FFFFFF;
+}
+  .image-gallery-container:hover .overlay-imgb{
+       opacity: 0.6;
+    }
+  .handle-for-insta
+  {
+    position:absolute;
+    color:#000000;
+    text-align:center;
+    padding-left:25%;
+    top: 50%;
+    font-size: 1.25em;
+  }
+  }
+  
+</style>
+
+{%- if info.image_post -%}
+
+  <div class="row">
+  {% for image in info.image_post %}
+  <div class = "span-for-gallery">
+    <a href = "{{ image }}" target="_blank"><div class= "image-gallery-container">
+    <img src="{{info.source_image[forloop.index0]}}" class="image-gallery-box">
+    <div class = "overlay-imgb">
+      <div class="handle-for-insta">{{info.image_handle[forloop.index0]}}</div>
+    </div>
+    </div></a>
+  </div>
+  {% endfor %}
+</div>
+  
+{%- endif -%}

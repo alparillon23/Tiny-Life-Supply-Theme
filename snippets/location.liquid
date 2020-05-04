@@ -1,0 +1,30 @@
+<!--<div class ="flag-orientation">-->
+{% assign linker = request.path | split: '/' %}
+{% if linker[1]=='products' or linker[1]=='collections' %}
+{% if shop.metafields.accentuate.country == 'US' %}
+{% assign links = 'https://tinylifesupply.ca' | append: request.path %}
+{% endif %}
+{% if shop.metafields.accentuate.country == 'CA' %}
+{% assign links = 'https://tinylifesupply.com' | append: request.path %}
+{% endif %}
+{% else %}
+{% if shop.metafields.accentuate.country == 'US' %}
+{% assign links = 'https://tinylifesupply.ca' %}
+{% endif %}
+{% if shop.metafields.accentuate.country == 'CA' %}
+{% assign links = 'https://tinylifesupply.com' %}
+{% endif %}
+{% endif %}
+<div class="column fulle">
+  {% if shop.metafields.accentuate.country == 'US' %}
+  <span class="column thirda"><img class="flag-image" src = "{{ 'United_States_Flag.png' | asset_url}}"></span>
+  <span class="column thirds"><p class = "flag-textlight">US |</p> </span>
+  <span class="column thirds"><p class = "flag-textdark"><a href = "{{links}}" style="color: grey"> CA</a></p></span>
+  {% endif %}
+  {% if shop.metafields.accentuate.country == 'CA' %}
+  <span class="column thirda"><img class="flag-image" src = "{{ 'Canada_Flag.png' | asset_url}}"></span>
+  <span class="column thirds"><p class = "flag-textlight">CA |</p> </span>
+  <span class="column thirds"><p class = "flag-textdark"><a href = "{{links}}" style="color: grey"> US</a></p></span>
+  {% endif %}
+</div>
+<!--</div>-->

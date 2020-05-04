@@ -1,0 +1,25 @@
+
+{% assign ps = product.metafields.pricing %}
+{% assign bon = false %}
+
+{% if ps.us_only and ps.ca_only %}
+{% assign bon = true %}
+{% endif %}
+
+{% if ps.us_only == blank and ps.ca_only == blank %}
+{% assign bon = true %}
+{% endif %}
+
+{% if bon == false %}
+{% if ps.us_only %}
+{% if shop.metafields.accentuate.country == 'CA' %}
+<img style="height:100%;width:100%;opacity:0.4;object-fit:cover;z-index:2" src="https://cdn.shopify.com/s/files/1/0036/6333/1373/files/us-flag-round.png?v=1576138267">
+{% endif %}
+{% else %}
+{% if shop.metafields.accentuate.country == 'US' %}
+<img style="height:100%;width:100%;opacity:0.4;object-fit:cover;z-index:2" src="https://cdn.shopify.com/s/files/1/0036/6333/1373/files/canada-flag-round.png?v=1576138267">
+{% endif %}
+{% endif %}
+{% endif %}
+
+<!-- Logic here is that if its not both or neither, then it must be one of them -->
